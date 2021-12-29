@@ -92,8 +92,7 @@ class ThemeApp(MDApp):
         id integer PRIMARY KEY,
         tema text NOT NULL,
         paleta text NOT NULL)"""
-        self.cnx.execute(sql_tabela)
-        
+        self.cnx.execute(sql_tabela)        
         self.cursor.execute("SELECT * FROM tb_temas")
         data = self.cursor.fetchall()
         if len(data)==0 or data==None:
