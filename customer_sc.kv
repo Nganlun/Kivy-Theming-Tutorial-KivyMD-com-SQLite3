@@ -1,0 +1,157 @@
+<ScManager>:
+    CustomerScreen:
+        id: customer
+        name: "customer"
+<CustomerScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDToolbar:
+            title: "Painel do Cliente"
+        MDTabs:
+            Tab:
+                title: "Produtos"
+                content_text: f"Isto é um exemplo para {self.title}"
+            Tab:
+                title: "Carrinho"
+                content_text: f"Isto é um exemplo para {self.title}"
+            Tab:
+                title: "Temas"                
+                MDGridLayout:
+                    cols: 2      
+                    spacing: 0.6                                  
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check1
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Cyan"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check2
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Teal"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check3
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Blue"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check4
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Purple"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check5
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Red"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check6
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Orange"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check7
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Amber"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: 'horizontal'                        
+                        MDCheckbox:                             
+                            id: check8
+                            group: 'color'
+                            pos_hint: {"center_y": .5}
+                            size_hint:(None,None)
+                            width: 60
+                        MDLabel:
+                            text:"Gray"
+                            pos_hint: {"center_y": .5}
+                            bold: True
+                            theme_text_color: "Primary"
+                            width: 250
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        spacing: "15dp"                        
+                        MyToggleButton:
+                            text: "Light"
+                            group: "theme"
+                            on_press: 
+                                root.set_light()
+                        MyToggleButton:
+                            text: "Dark"
+                            group: "theme"
+                            on_press: 
+                                root.set_dark()
+        MDBottomAppBar:
+            MDToolbar:
+                title: ""
+                icon: "android"
+                type: "bottom"
+                left_action_items: [["menu", lambda x: x], ["cog", lambda x: x], ["exit-run", lambda x: app.fechar_app()]]
+                mode: "end"
+<Tab>    
+    MDLabel:
+        text: root.content_text
+        pos_hint: {"center_x": .5, "center_y": .5}                    
