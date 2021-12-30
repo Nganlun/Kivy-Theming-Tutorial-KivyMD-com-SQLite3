@@ -2,40 +2,46 @@
     CustomerScreen:
         id: customer
         name: "customer"
-<CustomerScreen>:
+<CustomerScreen>:    
     MDBoxLayout:
         orientation: "vertical"
         MDToolbar:
-            title: "Painel do Cliente"
+            title: "Customer Panel"
         MDTabs:
+            id: toolbar
+            on_tab_switch: app.on_tab_switch(*args)
             Tab:
-                title: "Produtos"
-                content_text: f"Isto é um exemplo para {self.title}"
+                title: "Products"
+                content_text: f"This is a example for {self.title}"
             Tab:
-                title: "Carrinho"
-                content_text: f"Isto é um exemplo para {self.title}"
+                title: "Cart"
+                content_text: f"This is a example for {self.title}"
             Tab:
-                title: "Temas"                
+                title: "Themes"                 
                 MDGridLayout:
                     cols: 2      
                     spacing: 0.6                                  
                     MDBoxLayout:
-                        orientation: 'horizontal'                        
-                        MDCheckbox:                             
+                        orientation: 'horizontal'                      
+                        MDCheckbox:
+                            on_active:
+                                root.on_checkbox_active(*args)                             
                             id: check1
                             group: 'color'
                             pos_hint: {"center_y": .5}
                             size_hint:(None,None)
                             width: 60
                         MDLabel:
-                            text:"Cyan"
+                            text:"Cyan"                            
                             pos_hint: {"center_y": .5}
                             bold: True
                             theme_text_color: "Primary"
                             width: 250
                     MDBoxLayout:
                         orientation: 'horizontal'                        
-                        MDCheckbox:                             
+                        MDCheckbox:
+                            on_active:
+                                root.on_checkbox_active(*args)                              
                             id: check2
                             group: 'color'
                             pos_hint: {"center_y": .5}
@@ -49,7 +55,9 @@
                             width: 250
                     MDBoxLayout:
                         orientation: 'horizontal'                        
-                        MDCheckbox:                             
+                        MDCheckbox: 
+                            on_active:
+                                root.on_checkbox_active(*args)                             
                             id: check3
                             group: 'color'
                             pos_hint: {"center_y": .5}
@@ -63,7 +71,9 @@
                             width: 250
                     MDBoxLayout:
                         orientation: 'horizontal'                        
-                        MDCheckbox:                             
+                        MDCheckbox: 
+                            on_active:
+                                root.on_checkbox_active(*args)                             
                             id: check4
                             group: 'color'
                             pos_hint: {"center_y": .5}
@@ -79,6 +89,8 @@
                         orientation: 'horizontal'                        
                         MDCheckbox:                             
                             id: check5
+                            on_active:
+                                root.on_checkbox_active(*args) 
                             group: 'color'
                             pos_hint: {"center_y": .5}
                             size_hint:(None,None)
@@ -93,6 +105,8 @@
                         orientation: 'horizontal'                        
                         MDCheckbox:                             
                             id: check6
+                            on_active:
+                                root.on_checkbox_active(*args) 
                             group: 'color'
                             pos_hint: {"center_y": .5}
                             size_hint:(None,None)
@@ -107,6 +121,8 @@
                         orientation: 'horizontal'                        
                         MDCheckbox:                             
                             id: check7
+                            on_active:
+                                root.on_checkbox_active(*args) 
                             group: 'color'
                             pos_hint: {"center_y": .5}
                             size_hint:(None,None)
@@ -121,6 +137,8 @@
                         orientation: 'horizontal'                        
                         MDCheckbox:                             
                             id: check8
+                            on_active:
+                                root.on_checkbox_active(*args) 
                             group: 'color'
                             pos_hint: {"center_y": .5}
                             size_hint:(None,None)
@@ -134,12 +152,12 @@
                     MDBoxLayout:
                         orientation: "horizontal"
                         spacing: "15dp"                        
-                        MyToggleButton:
+                        MyToggleButton:                            
                             text: "Light"
                             group: "theme"
                             on_press: 
                                 root.set_light()
-                        MyToggleButton:
+                        MyToggleButton:                            
                             text: "Dark"
                             group: "theme"
                             on_press: 
