@@ -74,13 +74,7 @@ class CustomerScreen(Screen):
                 self.current_app.theme_cls.primary_palette = "Gray"
                 sql_update = "UPDATE tb_temas SET  paleta = 'Gray' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()            
-            if self.current_app.theme_cls.theme_style == "Dark":
-                self.current_app.theme_cls.theme_style = "Light"
-                self.set_dark()
-            else:
-                self.current_app.theme_cls.theme_style = "Dark"
-                self.set_light()
+                self.current_app.cnx.commit()                        
         else:
             pass
             #print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')       
