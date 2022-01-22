@@ -33,8 +33,7 @@ class CustomerScreen(Screen):
         self.current_app.cursor.execute(sql_update)
         self.current_app.cnx.commit()  
     def on_checkbox_active(self, checkbox, value):                       
-        if value:
-            #print('The checkbox', checkbox, 'is active', 'and', checkbox.state, 'state')            
+        if value:                       
             if (checkbox== self.ids['check1']):            
                 self.current_app.theme_cls.primary_palette = "Cyan" 
                 sql_update = "UPDATE tb_temas SET  paleta = 'Cyan' WHERE id = '1';"
@@ -76,8 +75,7 @@ class CustomerScreen(Screen):
                 self.current_app.cursor.execute(sql_update)
                 self.current_app.cnx.commit()                        
         else:
-            pass
-            #print('The checkbox', checkbox, 'is inactive', 'and', checkbox.state, 'state')       
+            pass       
     def __init__(self, **kw):
         super(CustomerScreen, self).__init__(**kw)
         self.current_app = App.get_running_app()            
@@ -88,7 +86,7 @@ class ThemeApp(MDApp):
     def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):                        
         self.current_tab = (tab_text)
         if self.current_tab == "Temas":            
-            print(tab_text) # Nome da Guia:
+            print(tab_text)
     def inserir_tema(self):
         sql_inicio = "INSERT INTO tb_temas (id, tema, paleta) VALUES ('1', 'Light', 'Cyan');"    
         self.cursor.execute(sql_inicio)
