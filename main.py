@@ -114,7 +114,7 @@ class Theming_App(MDApp):
         data = self.cursor.fetchall()
         if len(data)==0 or data==None:
             self.insert_theme()                                
-    def apply_table(self):
+    def apply_theme(self):
         sql_theme = "SELECT theme, palette  FROM tb_themes WHERE id = '1';"    
         self.cursor.execute(sql_theme)
         data =  self.cursor.fetchall()
@@ -129,7 +129,7 @@ class Theming_App(MDApp):
     def build(self):        
         self.sm = ScManager()
         self.create_table()                
-        self.apply_table()        
+        self.apply_theme()        
         self.sm.add_widget(ThemeApp(name='theme_app'))        
         return self.sm     
 if __name__ == "__main__":
