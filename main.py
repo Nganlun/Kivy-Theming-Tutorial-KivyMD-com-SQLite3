@@ -1,127 +1,136 @@
-from kivy.app import App
-from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivymd.app import MDApp
-from kivymd.uix.tab import MDTabsBase
-from kivymd.uix.floatlayout import MDFloatLayout
-from kivymd.icon_definitions import md_icons
-from kivymd.color_definitions import colors
-from kivy.properties import StringProperty, ObjectProperty
-from kivymd.uix.behaviors.toggle_behavior import MDToggleButton
-from kivymd.uix.button import MDFillRoundFlatButton
-from kivy.lang.builder import Builder
+import kivy
 import sqlite3
-Builder.load_file("customer_sc.kv")
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivymd.uix.tab import MDTabsBase
+from kivymd.theming import ThemeManager
+from kivymd.uix.floatlayout import MDFloatLayout
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivymd.uix.button import MDFillRoundFlatButton
+Builder.load_file("gui.kv")
 class ScManager(ScreenManager):
     pass
 class Tab(MDFloatLayout, MDTabsBase):    
-    content_text = StringProperty("")
-class MyToggleButton(MDFillRoundFlatButton, MDToggleButton):    
+    pass
+class ScManager(ScreenManager):
+    pass                                                          
+class ThemeApp(Screen):        
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)        
-class CustomerScreen(Screen): 
-    def __init__(self,**kwargs):
-        super(CustomerScreen, self).__init__(**kwargs)             
+        super(ThemeApp, self).__init__(**kwargs)
+        self.current_app = MDApp.get_running_app()                  
+    def on_pre_enter(self, *args):        
+        sql_theme = "SELECT palette FROM tb_themes WHERE id = '1';"
+        self.current_app.cursor.execute(sql_theme)
+        row = self.current_app.cursor.fetchone()
+        print("ids", self.ids)
+        if row[0] == "Cyan":
+            self.ids['check1'].active = True
+        elif row[0] == "Teal":
+            self.ids['check2'].active = True
+        elif row[0] == "Blue":
+            self.ids['check3'].active = True
+        elif row[0] == "Purple":
+            self.ids['check4'].active = True
+        elif row[0] == "Red":
+            self.ids['check5'].active = True
+        elif row[0] == "Orange":
+            self.ids['check6'].active = True
+        elif row[0] == "Amber":
+            self.ids['check7'].active = True
+        elif row[0] == "Gray":
+            self.ids['check8'].active = True
     def set_light(self):        
         self.current_app.theme_cls.theme_style = "Light"
-        sql_update = "UPDATE tb_temas SET  tema = 'Light'  WHERE id = '1';"
+        sql_update = "UPDATE tb_themes SET  theme = 'Light'  WHERE id = '1';"
         self.current_app.cursor.execute(sql_update)
-        self.current_app.cnx.commit() 
+        self.current_app.connection.commit() 
     def set_dark(self):
         self.current_app.theme_cls.theme_style = "Dark"
-        sql_update = """UPDATE tb_temas SET tema = 'Dark' WHERE id = 1;"""
+        sql_update = """UPDATE tb_themes SET theme = 'Dark' WHERE id = 1;"""
         self.current_app.cursor.execute(sql_update)
-        self.current_app.cnx.commit()  
+        self.current_app.connection.commit()  
     def on_checkbox_active(self, checkbox, value):                       
-        if value:                       
+        if value:            
             if (checkbox== self.ids['check1']):            
                 self.current_app.theme_cls.primary_palette = "Cyan" 
-                sql_update = "UPDATE tb_temas SET  paleta = 'Cyan' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Cyan' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()            
+                self.current_app.connection.commit()                 
             elif (checkbox== self.ids['check2']):
                 self.current_app.theme_cls.primary_palette = "Teal"
-                sql_update = "UPDATE tb_temas SET  paleta = 'Teal' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Teal' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()            
+                self.current_app.connection.commit()           
             elif (checkbox== self.ids['check3']):
                 self.current_app.theme_cls.primary_palette = "Blue"
-                sql_update = "UPDATE tb_temas SET  paleta = 'Blue' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Blue' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()            
+                self.current_app.connection.commit()           
             elif (checkbox== self.ids['check4']):
                 self.current_app.theme_cls.primary_palette = "Purple"
-                sql_update = "UPDATE tb_temas SET  paleta = 'Purple' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Purple' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()            
+                self.current_app.connection.commit()           
             elif (checkbox== self.ids['check5']):
                 self.current_app.theme_cls.primary_palette = "Red"
-                sql_update = "UPDATE tb_temas SET  paleta = 'Red' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Red' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()                        
+                self.current_app.connection.commit()                       
             elif (checkbox== self.ids['check6']):
                 self.current_app.theme_cls.primary_palette = "Orange"
-                sql_update = "UPDATE tb_temas SET  paleta = 'Orange' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Orange' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()            
+                self.current_app.connection.commit()          
             elif (checkbox== self.ids['check7']):
                 self.current_app.theme_cls.primary_palette = "Amber"
-                sql_update = "UPDATE tb_temas SET  paleta = 'Amber' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Amber' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()            
+                self.current_app.connection.commit()           
             elif (checkbox== self.ids['check8']):
                 self.current_app.theme_cls.primary_palette = "Gray"
-                sql_update = "UPDATE tb_temas SET  paleta = 'Gray' WHERE id = '1';"
+                sql_update = "UPDATE tb_themes SET  palette = 'Gray' WHERE id = '1';"
                 self.current_app.cursor.execute(sql_update)
-                self.current_app.cnx.commit()                        
+                self.current_app.connection.commit()                      
         else:
-            pass       
-    def __init__(self, **kw):
-        super(CustomerScreen, self).__init__(**kw)
-        self.current_app = App.get_running_app()            
-class ThemeApp(MDApp):    
-    cnx =  sqlite3.connect("data.sql")
-    cursor = cnx.cursor() 
-    current_tab = ""       
-    def on_tab_switch(self, instance_tabs, instance_tab, instance_tab_label, tab_text):                        
-        self.current_tab = (tab_text)
-        if self.current_tab == "Temas":            
-            print(tab_text)
-    def inserir_tema(self):
-        sql_inicio = "INSERT INTO tb_temas (id, tema, paleta) VALUES ('1', 'Light', 'Cyan');"    
+            pass          
+class Theming_App(MDApp):
+    MDApp.title = "Theming App"    
+    connection=  sqlite3.connect("data.db")
+    cursor = connection.cursor()     
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.screen = ThemeApp()
+    def insert_theme(self):
+        sql_inicio = "INSERT INTO tb_themes(id, theme, palette) VALUES ('1', 'Light', 'Blue');"    
         self.cursor.execute(sql_inicio)
-        self.cnx.commit()
-    def criar_tabela(self):
-        sql_tabela = """CREATE TABLE IF NOT EXISTS tb_temas (
+        self.connection.commit()
+    def create_table(self):
+        sql_tabela = """CREATE TABLE IF NOT EXISTS tb_themes(
         id integer PRIMARY KEY,
-        tema text NOT NULL,
-        paleta text NOT NULL)"""
-        self.cnx.execute(sql_tabela)        
-        self.cursor.execute("SELECT * FROM tb_temas")
+        theme text NOT NULL,
+        palette text NOT NULL)"""
+        self.connection.execute(sql_tabela)        
+        self.cursor.execute("SELECT * FROM tb_themes")
         data = self.cursor.fetchall()
         if len(data)==0 or data==None:
-            self.inserir_tema()
-            print("Tema inserido na base de dados.")
-    def aplicar_tema(self):
-        sql_tema = "SELECT tema, paleta  FROM tb_temas WHERE id = '1';"    
-        self.cursor.execute(sql_tema)
+            self.insert_theme()                                
+    def apply_table(self):
+        sql_theme = "SELECT theme, palette  FROM tb_themes WHERE id = '1';"    
+        self.cursor.execute(sql_theme)
         data =  self.cursor.fetchall()
         if len(data)==0 or data==None:
-            self.inserir_tema()
-            print("Tema inserido na base de dados.")
+            self.insert_theme()            
         else:
             for dt in data:
-                tema = dt[0]
-                paleta = dt[1]                        
-            self.theme_cls.theme_style = tema
-            self.theme_cls.primary_palette = paleta
-    def fechar_app(self):
-        self.stop() 
-    def build(self):
-        self.criar_tabela()
-        self.aplicar_tema()
-        scm = ScManager()
-        scm.current = "customer"
-        return scm
+                theme = dt[0]
+                palette = dt[1]                        
+            self.theme_cls.theme_style = theme
+            self.theme_cls.primary_palette = palette              
+    def build(self):        
+        self.sm = ScManager()
+        self.create_table()                
+        self.apply_table()        
+        self.sm.add_widget(ThemeApp(name='theme_app'))        
+        return self.sm     
 if __name__ == "__main__":
-    ThemeApp().run()
+    Theming_App().run()
