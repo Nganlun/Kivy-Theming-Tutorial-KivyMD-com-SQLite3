@@ -8,8 +8,6 @@ from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.uix.button import MDFillRoundFlatButton
 Builder.load_file("gui.kv")
-class ScManager(ScreenManager):
-    pass
 class Tab(MDFloatLayout, MDTabsBase):    
     pass
 class ScManager(ScreenManager):
